@@ -1,4 +1,15 @@
 SuiteCloud::Application.routes.draw do
+  devise_for :users
+  root "pages#home"
+  get  "about" => "pages#about"
+  get "my_profile" => "pages#my_profile"
+  get "search_database" => "pages#search_database"
+  get "my_listings" => "pages#my_listings"
+  get "current_deals" => "pages#current_deals"
+  get "closed_deals" => "pages#closed_deals"
+  get "accounts_receivable" => "pages#accounts_receivable"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
