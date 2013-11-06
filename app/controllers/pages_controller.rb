@@ -7,6 +7,16 @@ class PagesController < ApplicationController
   end
   def search_database
   end
+    def for_lease
+    end
+    def lease_comps
+    end
+    def for_sale
+    end
+    def sale_comps
+    end
+    def property_directory
+    end
   def my_listings
   end
   def current_deals

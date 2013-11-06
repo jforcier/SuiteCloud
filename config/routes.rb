@@ -1,9 +1,14 @@
 SuiteCloud::Application.routes.draw do
   devise_for :users
   root "pages#home"
-  get  "about" => "pages#about"
+  get "about" => "pages#about"
   get "my_profile" => "pages#my_profile"
   get "search_database" => "pages#search_database"
+    get "for_lease" => "pages#for_lease"
+    get "lease_comps" => "pages#lease_comps"
+    get "for_sale" => "pages#for_sale"
+    get "sale_comps" => "pages#sale_comps"
+    get "property_directory" => "pages#property_directory"
   get "my_listings" => "pages#my_listings"
   get "current_deals" => "pages#current_deals"
   get "closed_deals" => "pages#closed_deals"
