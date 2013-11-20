@@ -11,20 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111051927) do
+ActiveRecord::Schema.define(version: 20131119024337) do
 
-  create_table "pins", force: true do |t|
-    t.string   "description"
+  create_table "listings", force: true do |t|
+    t.string   "city"
+    t.string   "address"
+    t.string   "suite"
+    t.integer  "size"
+    t.string   "building_type"
+    t.string   "building_class"
+    t.string   "asking_rate"
+    t.string   "lease_type"
+    t.string   "opex"
+    t.string   "brokerage"
+    t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
 
-  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+  create_table "pins", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

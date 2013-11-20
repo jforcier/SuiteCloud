@@ -1,5 +1,5 @@
 SuiteCloud::Application.routes.draw do
-  resources :pins
+  resources :listings
 
   devise_for :users
   root "pages#home"
