@@ -11,34 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119024337) do
+ActiveRecord::Schema.define(version: 20131109002655) do
 
-  create_table "listings", force: true do |t|
-    t.string   "city"
-    t.string   "address"
-    t.string   "suite"
-    t.integer  "size"
-    t.string   "building_type"
-    t.string   "building_class"
-    t.string   "asking_rate"
-    t.string   "lease_type"
-    t.string   "opex"
-    t.string   "brokerage"
-    t.string   "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  create_table "pins", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "description"
-  end
-
+ 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
