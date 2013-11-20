@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Building Image</th>
       <th>City</th>
       <th>Address</th>
       <th>Suite</th>
@@ -23,6 +24,7 @@
   <tbody>
     <% @listings.each do |listing| %>
       <tr>
+        <td><%= image_tag listing.image.url(:medium) %></td>
         <td><%= listing.city %></td>
         <td><%= listing.address %></td>
         <td><%= listing.suite %></td>
@@ -43,5 +45,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Listing', new_listing_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Listing', new_listing_path %>
+<% end %>
