@@ -1,4 +1,4 @@
-<%= form_for(@listing) do |f| %>
+<%= form_for @listing, html: { multipart: true } do |f| %>
   <% if @listing.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
@@ -11,51 +11,67 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+<div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :suite %><br>
-    <%= f.text_field :suite %>
+
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :size %><br>
-    <%= f.text_field :size %>
+
+  <div class="form-group">
+    <%= f.label :suite %>
+    <%= f.text_field :suite, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :building_type %><br>
-    <%= f.text_field :building_type %>
+
+  <div class="form-group">
+    <%= f.label :size %>
+    <%= f.text_field :size, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :building_class %><br>
-    <%= f.text_field :building_class %>
+
+  <div class="form-group">
+    <%= f.label :building_type %>
+    <%= f.text_field :building_type, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :asking_rate %><br>
-    <%= f.text_field :asking_rate %>
+
+  <div class="form-group">
+    <%= f.label :building_class %>
+    <%= f.text_field :building_class, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :opex %><br>
-    <%= f.text_field :opex %>
+
+  <div class="form-group">
+    <%= f.label :asking_rate %>
+    <%= f.text_field :asking_rate, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :lease_type %><br>
-    <%= f.text_field :lease_type %>
+
+  <div class="form-group">
+    <%= f.label :opex %>
+    <%= f.text_field :opex, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :brokerage %><br>
-    <%= f.text_field :brokerage %>
+
+  <div class="form-group">
+    <%= f.label :lease_type %>
+    <%= f.text_field :lease_type, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_field :notes %>
+
+  <div class="form-group">
+    <%= f.label :brokerage %>
+    <%= f.text_field :brokerage, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group">
+    <%= f.label :notes %>
+    <%= f.text_field :notes, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

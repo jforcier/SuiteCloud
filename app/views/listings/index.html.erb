@@ -1,8 +1,10 @@
-<h1>Listing listings</h1>
+<h1>Listings</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Image</th>
+      <th>User</th>
       <th>City</th>
       <th>Address</th>
       <th>Suite</th>
@@ -23,6 +25,9 @@
   <tbody>
     <% @listings.each do |listing| %>
       <tr>
+        
+        <td><%= image_tag listing.image.url(:medium) %></td>
+        <td><%= listing.user.email if listing.user %></td>
         <td><%= listing.city %></td>
         <td><%= listing.address %></td>
         <td><%= listing.suite %></td>
@@ -35,7 +40,9 @@
         <td><%= listing.brokerage %></td>
         <td><%= listing.notes %></td>
         <td><%= link_to 'Show', listing %></td>
+        <% if listing.user == current_user %>
         <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+        <% end %>
         <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -43,5 +50,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Listing', new_listing_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Listing', new_listing_path %>
+<% end %>

@@ -1,64 +1,41 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
-  # GET /listings
-  # GET /listings.json
   def index
     @listings = Listing.all
   end
 
-  # GET /listings/1
-  # GET /listings/1.json
   def show
   end
 
-  # GET /listings/new
   def new
-    @listing = Listing.new
+    @listing = current_user.listings.build
   end
 
-  # GET /listings/1/edit
   def edit
   end
 
-  # POST /listings
-  # POST /listings.json
   def create
-    @listing = Listing.new(listing_params)
-
-    respond_to do |format|
-      if @listing.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @listing }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
-      end
+    @listing = current_user.listings.build(listing_params)
+    if @listing.save
+      redirect_to @listing, notice: 'Listing was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
-  # PATCH/PUT /listings/1
-  # PATCH/PUT /listings/1.json
   def update
-    respond_to do |format|
-      if @listing.update(listing_params)
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
-      end
+    if @listing.update(listing_params)
+      redirect_to @listing, notice: 'Listing was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
-  # DELETE /listings/1
-  # DELETE /listings/1.json
   def destroy
     @listing.destroy
-    respond_to do |format|
-      format.html { redirect_to listings_url }
-      format.json { head :no_content }
-    end
+    redirect_to listings_url
   end
 
   private
@@ -67,8 +44,13 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
+    def correct_user
+      @listing = current_user.listings.find_by(id: params[:id])
+      redirect_to listings_path, notice: "Not authorized to edit this listing" if @listing.nil?
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:city, :address, :suite, :size, :building_type, :building_class, :asking_rate, :opex, :lease_type, :brokerage, :notes)
+      params.require(:listing).permit(:image, :city, :address, :suite, :size, :building_type, :building_class, :asking_rate, :opex, :lease_type, :brokerage, :notes)
     end
 end
