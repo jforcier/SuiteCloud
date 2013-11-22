@@ -3,9 +3,9 @@
 <div id="listings" class="transitiions-enabled">
     <% @listings.each do |listing| %>
       <div class="box panel panel-default">
-        <%= image_tag listing.image.url(:medium) %>
-        <div class="panel-body">
-        <%= listing.user.email if listing.user %>
+        <%= link_to image_tag(listing.image.url(:medium)), listing %>
+        <div class="panel-body"><br/>
+        <strong><%= listing.user.email if listing.user %></strong>
         <%= listing.city %>
         <%= listing.address %>
         <%= listing.suite %>
@@ -17,12 +17,19 @@
         <%= listing.lease_type %>
         <%= listing.brokerage %>
         <%= listing.notes %>
-        <%= link_to 'Show', listing %>
         <% if listing.user == current_user %>
-          <%= link_to 'Edit', edit_listing_path(listing) %>
-          <%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
+          <div class="actions">
+            <%= link_to edit_listing_path(listing) do %>
+            <span class="glyphicon glyphicon-edit"></span>
+            Edit
+            <% end %>
+            <%= link_to listing, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+            Delete
+            <% end %>
+            </div>
+        <% end %>
+        </div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
 </div>
