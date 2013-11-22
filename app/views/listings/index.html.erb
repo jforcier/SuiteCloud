@@ -1,55 +1,28 @@
-<h1>Listings</h1>
+<h1> Listings </h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>User</th>
-      <th>City</th>
-      <th>Address</th>
-      <th>Suite</th>
-      <th>Size</th>
-      <th>Building type</th>
-      <th>Building class</th>
-      <th>Asking rate</th>
-      <th>Opex</th>
-      <th>Lease type</th>
-      <th>Brokerage</th>
-      <th>Notes</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div id="listings" class="transitiions-enabled">
     <% @listings.each do |listing| %>
-      <tr>
-        
-        <td><%= image_tag listing.image.url(:medium) %></td>
-        <td><%= listing.user.email if listing.user %></td>
-        <td><%= listing.city %></td>
-        <td><%= listing.address %></td>
-        <td><%= listing.suite %></td>
-        <td><%= listing.size %></td>
-        <td><%= listing.building_type %></td>
-        <td><%= listing.building_class %></td>
-        <td><%= listing.asking_rate %></td>
-        <td><%= listing.opex %></td>
-        <td><%= listing.lease_type %></td>
-        <td><%= listing.brokerage %></td>
-        <td><%= listing.notes %></td>
-        <td><%= link_to 'Show', listing %></td>
+      <div class="box panel panel-default">
+        <%= image_tag listing.image.url(:medium) %>
+        <div class="panel-body">
+        <%= listing.user.email if listing.user %>
+        <%= listing.city %>
+        <%= listing.address %>
+        <%= listing.suite %>
+        <%= listing.size %>
+        <%= listing.building_type %>
+        <%= listing.building_class %>
+        <%= listing.asking_rate %>
+        <%= listing.opex %>
+        <%= listing.lease_type %>
+        <%= listing.brokerage %>
+        <%= listing.notes %>
+        <%= link_to 'Show', listing %>
         <% if listing.user == current_user %>
-        <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
-        <% end %>
-        <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+          <%= link_to 'Edit', edit_listing_path(listing) %>
+          <%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in? %>
-  <%= link_to 'New Listing', new_listing_path %>
-<% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
